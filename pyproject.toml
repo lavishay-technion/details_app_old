@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "details-app"
+version = "0.1.0"
+description = ""
+authors = ["lavishay-technion <lavishay@campus.technion.ac.il>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.3"
+flask-sqlalchemy = "^3.1.1"
+flask-wtf = "^1.2.1"
+postgres = "^4.0"
+gunicorn = "^22.0.0"
+validators = "^0.28.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
