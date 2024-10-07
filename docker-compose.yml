@@ -1,41 +1,13 @@
 x-common-api-settings: &common-settings
-  image: details_app
-  environment:
-    - POSTGRES_PASSWORD=mysecretpassword 
-    - POSTGRES_USER=admin    
-    - DBNAME=postgres
-    - DBHOST=postgresql
-    - SECRET_KEY=bKw%TW6XqRaHgTHnQ6*ZCYfwwQY1jP
-
-
-    # - LINKS_PATH=./data/links.json
-    # - ELASTIC_URL=http://elasticsearch:9200/
-  # healthcheck:
-  #     test: ["CMD", "curl", "localhost:8080/api/health_check"]
-  #     interval: 30s
-  #     timeout: 3s
-  #     retries: 10  
+  image: details_app:test
   ports:
     - "8000:8000"
     - "465:465"
-  deploy:
-    resources:
-      limits:
-        cpus: '1'
-        memory: 100m
-      reservations: 
-        cpus: '0.5'
-        memory: 10m
-  networks:
-  - details-network
-
-
 
 services:
   details-api-1:
     <<: *common-settings
     container_name: details_api_1
-  
 
   postgresql:
     image: postgres:latest
@@ -43,26 +15,5 @@ services:
     restart: always
     volumes:
       - ./psql/data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword 
-      - POSTGRES_USER=admin    
-      - DBNAME=postgres
     ports:
       - 5432:5432
-    networks:
-      - details-network
-    deploy:
-      resources: 
-        limits:
-          cpus: "1"
-          memory: 512M
-    
-
-
-
-
-networks:
-  details-network:
-    name: details-network
-    driver: bridge
-  

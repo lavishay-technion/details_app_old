@@ -7,4 +7,4 @@
 #################################################
  APP_VERSION=${1:'0.0.1'}
 
- docker build . -t details_app:latest
+ docker build . -t details_app:test
