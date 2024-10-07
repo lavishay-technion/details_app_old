@@ -8,7 +8,7 @@ RUN poetry install --no-dev
 FROM python:3.11-alpine
 ARG APP_VERSION
 ENV APP_VERSION=${APP_VERSION}
-LABEL MAINTAINER=Avishay VERSION=${APP_VERSION}
+LABEL MAINTAINER=Ori_Nahum VERSION=${APP_VERSION}
 WORKDIR /home/app
 RUN apk add git
 COPY --from=base /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages 
