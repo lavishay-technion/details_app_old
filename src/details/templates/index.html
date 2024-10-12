@@ -46,85 +46,11 @@
                             </div>
                         </div>
                     </form>
-
-                    <!-- Combo Box for Contacts -->
-                    <div class="mt-4">
-                        <h2>Delete Contact</h2>
-                        <select id="contactList" class="form-control">
-                            {% for contact in contacts %}
-                                <option value="{{ contact.id }}">[{{contact.id}}] {{ contact.name }} - {{ contact.email }}</option>
-                            {% endfor %}
-                        </select>
-                        <!-- <button onclick="deleteSelectedContact()" class="btn btn-danger mt-2">Delete</button> -->
-                    </div>
                 </div>
             </div>
         </div>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const form = document.getElementById('contactForm');
-                form.addEventListener('submit', async function(event) {
-                    event.preventDefault(); // Prevent the default form submission
-                    const formData = new FormData(form);
-
-                    try {
-                        const response = await fetch('/', {
-                            method: 'POST',
-                            body: formData
-                        });
-                        const result = await response.json();
-                        if (response.ok) {
-                            alert('Data was saved successfully.');
-                            // Update the contact count
-                            updateContactCount(1);
-                            // Optionally, reset the form after successful submission
-                            form.reset();
-                        } else {
-                            alert('Failed to save data: ' + result.error);
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('An error occurred while saving data.');
-                    }
-                });
-            });
-
-            // async function deleteSelectedContact() {
-            //     const select = document.getElementById('contactList');
-            //     const id = select.value;
-            //     if (id) {
-            //         try {
-            //             const response = await fetch(/delete/${id}, {
-            //                 method: 'DELETE',
-            //                 headers: {
-            //                     'Content-Type': 'application/json'
-            //                 }
-            //             });
-            //             const result = await response.json();
-            //             if (response.ok) {
-            //                 alert(result.message);
-            //                 // Remove the deleted contact from the UI
-            //                 select.options[select.selectedIndex].remove();
-            //                 // Update the contact count
-            //                 updateContactCount(-1);
-            //             } else {
-            //                 alert(result.error);
-            //             }
-            //         } catch (error) {
-            //             console.error('Error:', error);
-            //             alert('An error occurred while deleting the contact.');
-            //         }
-            //     } else {
-            //         alert('Please select a contact to delete.');
-            //     }
-            // }
-
-            function updateContactCount(change) {
-                const countElement = document.getElementById('contactsCount');
-                const currentCount = parseInt(countElement.textContent);
-                countElement.textContent = currentCount + change;
-            }
         </script>
     {% endblock %}
 </body>
